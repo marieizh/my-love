@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Листівка для тебе ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffebee;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            flex-direction: column;
+            overflow: hidden;
+            font-size: 16px; /* Зменшення шрифту для всього тексту */
+        }
+        h2, h3, p {
+            font-size: 16px;
+            margin: 10px;
+        }
+        button {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 15px;
+            background-color: #ff80ab;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff4081;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            display: none;
+        }
+        .heart {
+            color: red;
+            font-size: 50px;
+            animation: heartbeat 1s infinite;
+        }
+        .disabled {
+            color: gray;
+            pointer-events: none;
+        }
+        .hidden {
+            display: none;
+        }
+        .flying-kiss {
+            position: absolute;
+            animation: fly 5s infinite;
+            font-size: 40px;
+            color: red;
+        }
+        @keyframes fly {
+            0% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(100px); }
+            50% { transform: translateY(0) translateX(200px); }
+            75% { transform: translateY(100px) translateX(100px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+        .checkmark {
+            font-size: 10px; /* Маленький розмір галочки */
+            color: green;
+            margin-left: 10px;
+            vertical-align: middle; /* Вирівнює галочку по вертикалі */
+        }
+        .question-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        #page2 {
+            overflow-y: auto;
+            max-height: 70vh;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="page1">
+        <h2>Привіт, сонечко!</h2>
+        <p>Хочеш, я розповім тобі секрет? 😏</p>
+        <button onclick="showPage('page2')">Так</button>
+        <button class="disabled">Ні</button>
+    </div>
+
+    <div id="page2" class="hidden">
+        <h2>Ти думав, що ось так все просто? 😈</h2>
+        <p>Спочатку потрібно відповісти на запитання 😝</p>
+        <button onclick="showPage('questions')">Готовий як ніколи</button>
+    </div>
+
+    <div id="questions" class="hidden">
+        <h3>Відповідай на запитання:</h3>
+ <h3>Обовязково нажимай правильну відповідь:</h3>
+        <div class="question-container">
+            <p>1. Хто наймиліший?</p>
+            <button onclick="addCheckmark(1)">Я</button>
+            <button class="disabled">No second option</button>
+            <span id="checkmark-1" class="checkmark"></span>
+        </div>
+
+        <div class="question-container">
+            <p>2. У кого найкращі щічки? 😍</p>
+            <button class="disabled">No second option</button>
+            <button onclick="addCheckmark(2)">У мене найкраші щічки</button>
+            <span id="checkmark-2" class="checkmark"></span>
+        </div>
+
+        <div class="question-container">
+            <p>3. Хто має такі гарненькі та пухкенькі губи? </p>
+            <button onclick="addCheckmark(3)">Я</button>
+            <button class="disabled">No second option</button>
+            <span id="checkmark-3" class="checkmark"></span>
+        </div>
+<div class="question-container">
+            <p>4. Хто у нас тут такий розумний?</p>
+            <button onclick="addCheckmark(4)">Я</button>
+            <button class="disabled">No second option</button>
+            <span id="checkmark-4" class="checkmark"></span>
+        </div>
+
+        <div class="question-container">
+            <p>5. У кого такі гарні оченята? </p>
+            <button onclick="addCheckmark(5)">У мене</button>
+            <button class="disabled">No second option</button>
+            <span id="checkmark-5" class="checkmark"></span>
+        </div>
+
+        <div class="question-container">
+            <p>6. Можливо, ти навіть знаєш, хто у нас тут так уперто йде до мети?</p>
+            <button onclick="addCheckmark(6)">Я</button>
+            <button class="disabled">Можливо хтось інший</button>
+            <span id="checkmark-6" class="checkmark"></span>
+        </div>
+
+        <h3>Молодець! Ти такий розумний 🥰</h3>
+        <button onclick="showPage('secretPage')">➡️</button>
+    </div>
+
+    <div id="secretPage" class="hidden">
+        <h2>Натисни кнопку, щоб дізнатися секрет!</h2>
+        <button onclick="showSecret()">Секрет</button>
+        <p id="secretText" class="hidden">Ти робиш цей світ краще. Я хочу, щоб усмішка ніколи не зникала з твого обличчя, а настрій завжди був хорошим. Поганий настрій можна вилікувати нашою спільною вірою в те, що в тебе все неодмінно вдасться❤.</p>
+        <button id="kissButton" class="hidden" onclick="showPage('kisses')">Замовити поцілунок 💋</button>
+    </div>
+
+    <div id="kisses" class="hidden">
+        <h2>💋💋💋💋</h2>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('div').forEach(div => div.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        function showSecret() {
+            document.getElementById('secretText').classList.remove('hidden');
+            document.getElementById('kissButton').classList.remove('hidden');
+        }
+
+        function addCheckmark(questionNumber) {
+            const checkmark = document.createElement('span');
+            checkmark.classList.add('checkmark');
+            checkmark.textContent = '✅';
+            document.getElementById('checkmark-' + questionNumber).appendChild(checkmark);
+        }
+
+        function createFlyingKisses() {
+            for (let i = 0; i < 5; i++) {
+                const kiss = document.createElement('span');
+                kiss.classList.add('flying-kiss');
+                kiss.textContent = '💋';
+                document.body.appendChild(kiss);
+            }
+        }
+
+        document.getElementById('kissButton').onclick = function() {
+            createFlyingKisses();
+        }
+    </script>
+</body>
+</html>
